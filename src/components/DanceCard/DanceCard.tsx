@@ -1,9 +1,9 @@
 import { useDispatch } from "react-redux";
 import { toggleLike, removeCard } from "../../store/actions";
 import { DanceCardType } from "../../types/types";
-import { FaThumbsUp, FaRegThumbsUp } from "react-icons/fa";
-import { FaTrashAlt } from "react-icons/fa";
+import { FaThumbsUp, FaRegThumbsUp, FaTrashAlt } from "react-icons/fa";
 
+import { AppDispatch } from "../../store/store";
 import styles from "./DanceCard.module.scss";
 
 interface CardProps {
@@ -11,7 +11,7 @@ interface CardProps {
 }
 
 const DanceCard: React.FC<CardProps> = ({ card }) => {
-  const dispatch = useDispatch();
+  const dispatch: AppDispatch = useDispatch();
 
   const handleLikeClick = () => {
     dispatch(toggleLike(card.name));

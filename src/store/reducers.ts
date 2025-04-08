@@ -2,10 +2,17 @@ import { combineReducers } from 'redux';
 import { ADD_CARD, REMOVE_CARD, TOGGLE_LIKE, SET_FILTER } from './actions';  
 import { DanceCardType } from '../types/types';
 
-const initialState = {
-  cards: [] as DanceCardType[],
-  filter: 'all' as 'all' | 'hasLike',
+
+interface RootState {
+  cards: DanceCardType[];
+  filter: 'all' | 'hasLike';
+}
+
+const initialState: RootState = {
+  cards: [],
+  filter: 'all',
 };
+
 
 function cards(state = initialState.cards, action: any): DanceCardType[] {
   switch (action.type) {
@@ -22,6 +29,7 @@ function cards(state = initialState.cards, action: any): DanceCardType[] {
   }
 }
 
+
 function filter(state = initialState.filter, action: any): 'all' | 'hasLike' {
   switch (action.type) {
     case SET_FILTER:
@@ -34,5 +42,4 @@ function filter(state = initialState.filter, action: any): 'all' | 'hasLike' {
 
 const rootReducer = combineReducers({ cards, filter });
 
-export type RootState = ReturnType<typeof rootReducer>;  
 export default rootReducer;
