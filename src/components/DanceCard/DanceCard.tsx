@@ -1,9 +1,8 @@
 import { useDispatch } from "react-redux";
 import { toggleLike, removeCard } from "../../store/actions";
 import { DanceCardType } from "../../types/types";
-import { FaThumbsUp, FaRegThumbsUp, FaTrashAlt } from "react-icons/fa";
+import { ThumbUp, ThumbDown, Delete } from "@mui/icons-material";
 
-import { AppDispatch } from "../../store/store";
 import styles from "./DanceCard.module.scss";
 
 interface CardProps {
@@ -11,7 +10,7 @@ interface CardProps {
 }
 
 const DanceCard: React.FC<CardProps> = ({ card }) => {
-  const dispatch: AppDispatch = useDispatch();
+  const dispatch = useDispatch();
 
   const handleLikeClick = () => {
     dispatch(toggleLike(card.name));
@@ -28,10 +27,10 @@ const DanceCard: React.FC<CardProps> = ({ card }) => {
       <p className={styles["card__description"]}>{card.description}</p>
       <div className={styles["card__buttons"]}>
         <button onClick={handleLikeClick}>
-          {card.hasLike ? <FaThumbsUp /> : <FaRegThumbsUp />}
+          {card.hasLike ? <ThumbUp /> : <ThumbDown />}
         </button>
         <button onClick={handleRemoveClick} className={styles["delete-btn"]}>
-          <FaTrashAlt />
+          <Delete />
         </button>
       </div>
     </div>
