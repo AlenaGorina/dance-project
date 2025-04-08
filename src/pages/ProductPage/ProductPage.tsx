@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { RootState } from "../../store/reducers";
+import { DanceCardType } from "../../types/types";
 
 const ProductPage: React.FC = () => {
   const { id } = useParams<{ id: string }>();
@@ -9,7 +10,8 @@ const ProductPage: React.FC = () => {
 
   // Получаем данные о продукте из store
   const product = useSelector(
-    (state: RootState) => state.cards.find((card) => card.name === id) // Ищем продукт по id
+    (state: RootState): DanceCardType | undefined =>
+      state.cards.find((card) => card.name === id) // Указываем тип возвращаемого значения
   );
 
   const handleBackClick = () => {
